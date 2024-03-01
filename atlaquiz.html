@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATLA Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;text-align:center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 10px;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color:#634c2c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color:#402f15;
+    }
+
+header {background-color:#c3b3a0; border:5px solid; border-radius:5px; border-color:#402f15; padding:10px;}
+
+footer {background-color:#c3b3a0; border:5px solid; border-radius:5px; border-color:#402f15; padding:10px;}
+ 
+ </style>
+</head>
+<body background="bg (2).png">
+<header>
+<div class="hb">
+<font size="8" color="#402f15"> <b> Welcome to the ATLAverse! </b> </font><br>
+<font size="5"> <i> Are you a real ATLA fan? Take this 5 Question Quiz about Avatar: The Last Airbender & The Legend of Korra to find out! </i></font>
+</div>
+</header>
+<hr>
+<br><br><br>
+<font size="4"> Play The Intro Music Here!</font> <br>
+<audio controls>
+  <source src="Avatar_ The Last Airbender - Intro [4K60FPS].mp3" type="audio/mpeg">
+</audio><br><br>
+<font size="4"> <b> "Water. Earth. Fire. Air. Long ago, the four nations lived together in harmony. Then, everything changed when the Fire Nation attacked. Only the Avatar, master of all four elements,
+<br>could stop them, but when the world needed him most, he vanished. A hundred years passed and my brother and I discovered the new Avatar,an airbender named Aang,
+<br> and although his airbending skills are great, he has a lot to learn before he's ready to save anyone. But I believe Aang can save the world." </b> </font>
+
+<br><br><br>
+<div class="container">
+  <h1>Quiz Time!</h1>
+  <div id="quiz"></div>
+  <button onclick="submitQuiz()" id="submit">Submit Quiz</button>
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "Which avatar vanished for a hundred years when the world needed him the most?",
+      options: ["Avatar Kuruk", "Avatar Kyoshi", "Avatar Roku", "Avatar Aang"],
+      correctAnswer: "Avatar Aang"
+    },
+    {
+      question: "Who's the side character that helped korra enter the spirit world?",
+      options: ["Katara", "Jinora", "Bolin", "Zuko"],
+      correctAnswer: "Jinora"
+    },
+    {
+      question: "Where was Toph born?",
+      options: ["Northern Water Tribe", "Southern Air Temple", "Ba Sing Se", "Omashu"],
+      correctAnswer: "Ba Sing Se"
+    },
+    {
+      question: "Who's the main antagonist in Avatar: Legend of Korra S2?",
+      options: ["Tonraq", "Earth Queen", "Zaheer", "Azula"],
+      correctAnswer: "Tonraq"
+    },
+    {
+      question: "Which avatar originated from the Southern Water Tribe?",
+      options: ["Korra", "Katara", "Bumi", "Uncle Iroh"],
+      correctAnswer: "Korra"
+    }
+  ];
+
+  const quizContainer = document.getElementById('quiz');
+  let score = 0;
+
+  function loadQuestion(questionIndex) {
+    const currentQuestion = questions[questionIndex];
+    const optionsHTML = currentQuestion.options.map(option =>
+      `<label><input type="radio" name="answer" value="${option}"> ${option}</label>`
+    ).join('<br>');
+
+    quizContainer.innerHTML = `
+      <div class="question">${currentQuestion.question}</div>
+      <div class="options">${optionsHTML}</div>
+    `;
+  }
+
+  function submitQuiz() {
+    const selectedOption = document.querySelector('input[name="answer"]:checked');
+    if (!selectedOption) {
+      alert("Please select an answer!");
+      return;
+    }
+
+    if (selectedOption.value === questions[score].correctAnswer) {
+      score++;
+    }
+
+    if (score < questions.length) {
+      loadQuestion(score);
+    } else {
+      alert(`Quiz complete! Your score is: ${score} out of ${questions.length}`);
+    }
+  }
+
+  loadQuestion(score);
+</script>
+<br><br>
+<font size="4"> <b> Congratulations! You Completed the Quiz! </b> </font> <br><br>
+<font size="4"> Play The Outro Music Here! </font> <br>
+<audio controls>
+  <source src="Credits - Avatar_ The Last Airbender Soundtrack.mp3" type="audio/mpeg">
+</audio>
+<br><br><br>
+<hr>
+<footer>
+<div>
+<font size="8" color="#402f15"> <b> Thank You for Answering! </b> </font><br>
+<font size="5"> <i> Made by: Micah Lui Jael H. Dayao, Anneka Mae D.C. de Lara & Bianca Jeyan A. Dela Cruz of 8-Pearl </i></font>
+</div>
+</footer>
+</body>
+</html>
